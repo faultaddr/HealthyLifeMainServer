@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
             DaoFactory daoFactory = new DaoFactory();
             List<MUserEntity> MUserEntitylist = new ArrayList<>();
             try {
-                MUserEntitylist = daoFactory.cursor(MUserEntity, "select * from m_user where m_user.userName='" + userName+ "'", MUserEntity.class);
+                MUserEntitylist = daoFactory.cursor("select * from m_user where m_user.userName='" + userName + "'", MUserEntity.class);
                 if (MUserEntitylist.size() == 0) {
                     MUserEntitylist = null;
                 }
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         DaoFactory daoFactory = new DaoFactory();
         List<MUserEntity> MUserEntitylist = null;
         try {
-            MUserEntitylist = daoFactory.cursor(MUserEntity, "select * from m_user where m_user.id=" + id + "", MUserEntity.class);
+            MUserEntitylist = daoFactory.cursor("select * from m_user where m_user.id=" + id + "", MUserEntity.class);
             if (MUserEntitylist.size() == 0) {
                 MUserEntitylist = null;
             }

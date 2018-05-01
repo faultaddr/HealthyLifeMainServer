@@ -1,8 +1,5 @@
 package cn.panyunyi.HealthyLifeMain.dao;
 
-import cn.panyunyi.HealthyLifeMain.entity.MUserEntity;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.hibernate.*;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -17,19 +14,17 @@ import java.util.List;
  * Created by panyunyi on 2017/5/3.
  */
 public class DaoFactory<T> extends Dao<T> {
+    private static DaoFactory newInstance = new DaoFactory();
     @Autowired
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure("hibernate.cfg.xml").build();
-
     public DaoFactory() {
     }
 
-
-    /*
-* function：增加
-* param：实体类对象
-* */
-
+    public static DaoFactory getInstance() {
+        if (newInstance == null) return new DaoFactory();
+        else return newInstance;
+    }
 
     @Override
     public boolean save(T u) {
@@ -59,11 +54,6 @@ public class DaoFactory<T> extends Dao<T> {
         //System.out.println(u.getCurrentLocation());
         return true;
     }
-
-    /*
-    * function：删除
-    * param：实体类对象
-    * */
     @Override
     public boolean delete(T u) {
         String info;
@@ -92,11 +82,6 @@ public class DaoFactory<T> extends Dao<T> {
         return true;
 
     }
-
-    /*
-    * function：更新
-    * param：实体类对象
-    * */
     @Override
     public boolean update(T u) {
 
@@ -120,7 +105,6 @@ public class DaoFactory<T> extends Dao<T> {
         }
         return true;
     }
-
     public boolean update(String sql) {
         SessionFactory sessionFactory = new MetadataSources(registry)
                 .buildMetadata().buildSessionFactory();
@@ -139,9 +123,8 @@ public class DaoFactory<T> extends Dao<T> {
         }
         return false;
     }
-
     @Override
-    public List cursor(T u, String s, Class aclass) throws Exception {
+    public List cursor(String s, Class aclass) throws Exception {
 
         // 2. 根据服务注册类创建一个元数据资源集，同时构建元数据并生成应用一般唯一的的session工厂
         SessionFactory sessionFactory = new MetadataSources(registry)
@@ -180,8 +163,4 @@ public class DaoFactory<T> extends Dao<T> {
         session.close();
         return list;
     }
-/*    public boolean generateSn(){
-        Date date=Date.valueOf(LocalDate.now());
-    }*/
-
 }

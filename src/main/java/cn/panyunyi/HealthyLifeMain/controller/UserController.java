@@ -5,8 +5,6 @@ import cn.panyunyi.HealthyLifeMain.service.UserService;
 import cn.panyunyi.HealthyLifeMain.service.UserServiceImpl;
 import cn.panyunyi.HealthyLifeMain.util.PrintMessage;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import org.hibernate.mapping.Map;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
