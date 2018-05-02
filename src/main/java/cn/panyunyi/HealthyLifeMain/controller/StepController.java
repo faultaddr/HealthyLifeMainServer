@@ -44,7 +44,7 @@ public class StepController {
         handlePrintMessage(response, mStepEntityList);
     }
 
-    @RequestMapping(value = "POST/Step/add")
+    @RequestMapping(value = "/POST/Step/add")
     public void addStepById(@RequestBody MStepEntity mStepEntity, HttpServletResponse response) {
         PrintMessage.PrintMessage(response, StepServiceImpl.getInstance().addStepData(mStepEntity), "false");
     }
