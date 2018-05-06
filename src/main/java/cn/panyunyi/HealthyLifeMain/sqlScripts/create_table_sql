@@ -1,17 +1,23 @@
-CREATE TABLE m_user (
-  userName     VARCHAR(20),
-  userPassword VARCHAR(20),
-  picSrc       VARCHAR(20),
-  userId       INTEGER AUTO_INCREMENT PRIMARY KEY
-);
-CREATE TABLE m_step (
-  steps       VARCHAR(20),
-  currentDate VARCHAR(30),
-  userId      INTEGER PRIMARY KEY
-);
-CREATE TABLE m_beat(
-  beats VARCHAR(20),
-  curentDate VARCHAR(30),
-  timeCount VARCHAR(20),
-  userId INTEGER PRIMARY KEY
-)
+# CREATE TABLE m_user (
+#   userName     VARCHAR(20),
+#   userPassword VARCHAR(20),
+#   picSrc       VARCHAR(20),
+#   userId       INTEGER AUTO_INCREMENT PRIMARY KEY
+# );
+# CREATE TABLE m_step (
+#   steps       VARCHAR(20),
+#   currentDateDetail VARCHAR(30),
+#   userId      INTEGER PRIMARY KEY
+# );
+# CREATE TABLE m_beat (
+#   beats      VARCHAR(20),
+#   current_date_detail VARCHAR(30),
+#   time_count  VARCHAR(20),
+#   user_id     INTEGER PRIMARY KEY
+# );
+# CREATE TABLE m_news (
+#   newsId      INTEGER AUTO_INCREMENT PRIMARY KEY,
+#   imgUrl      VARCHAR(20),
+#   linkUrl     VARCHAR(20),
+#   description VARCHAR(100)
+# )

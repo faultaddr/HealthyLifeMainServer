@@ -9,22 +9,22 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by panyunyi on 2017/5/3.
  */
 public class DaoFactory<T> extends Dao<T> {
-    private static DaoFactory newInstance = new DaoFactory();
+    private static DaoFactory newInstance ;
+
+    private static final ConcurrentMap<Class, Object> map = new ConcurrentHashMap<>();
+
     @Autowired
-    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure("hibernate.cfg.xml").build();
+    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
     public DaoFactory() {
     }
 
-    public static DaoFactory getInstance() {
-        if (newInstance == null) return new DaoFactory();
-        else return newInstance;
-    }
 
     @Override
     public boolean save(T u) {

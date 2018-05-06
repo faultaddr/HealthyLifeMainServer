@@ -1,10 +1,12 @@
 package cn.panyunyi.HealthyLifeMain.controller;
 
+import cn.panyunyi.HealthyLifeMain.dao.StepRepository;
 import cn.panyunyi.HealthyLifeMain.entity.MStepEntity;
 import cn.panyunyi.HealthyLifeMain.service.StepServiceImpl;
 import cn.panyunyi.HealthyLifeMain.util.PrintMessage;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +23,9 @@ import java.util.List;
 @Controller
 @EnableAutoConfiguration
 public class StepController {
+
+    @Autowired
+    private StepRepository stepRepository;
     public static org.slf4j.Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
@@ -46,7 +51,8 @@ public class StepController {
 
     @RequestMapping(value = "/POST/Step/add")
     public void addStepById(@RequestBody MStepEntity mStepEntity, HttpServletResponse response) {
-        PrintMessage.PrintMessage(response, StepServiceImpl.getInstance().addStepData(mStepEntity), "false");
+        PrintMessage.PrintMessage(response,(stepRepository.save(mStepEntity)!=null)+"","false");
+
     }
 
 

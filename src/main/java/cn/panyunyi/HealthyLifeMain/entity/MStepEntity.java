@@ -1,13 +1,19 @@
 package cn.panyunyi.HealthyLifeMain.entity;
 
+import javax.persistence.*;
+
 /**
- * Created by panyu on 2018/4/25.
+ * Created by panyu on 2018/5/6.
  */
+@Entity
+@Table(name = "m_step", schema = "healthylifemain", catalog = "")
 public class MStepEntity {
     private String steps;
-    private String currentDate;
+    private String currentDateDetail;
     private int userId;
 
+    @Basic
+    @Column(name = "steps", nullable = true, length = 20)
     public String getSteps() {
         return steps;
     }
@@ -16,14 +22,18 @@ public class MStepEntity {
         this.steps = steps;
     }
 
-    public String getCurrentDate() {
-        return currentDate;
+    @Basic
+    @Column(name = "currentDateDetail", nullable = true, length = 30)
+    public String getCurrentDateDetail() {
+        return currentDateDetail;
     }
 
-    public void setCurrentDate(String currentDate) {
-        this.currentDate = currentDate;
+    public void setCurrentDateDetail(String currentDateDetail) {
+        this.currentDateDetail = currentDateDetail;
     }
 
+    @Id
+    @Column(name = "userId", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -41,7 +51,8 @@ public class MStepEntity {
 
         if (userId != that.userId) return false;
         if (steps != null ? !steps.equals(that.steps) : that.steps != null) return false;
-        if (currentDate != null ? !currentDate.equals(that.currentDate) : that.currentDate != null) return false;
+        if (currentDateDetail != null ? !currentDateDetail.equals(that.currentDateDetail) : that.currentDateDetail != null)
+            return false;
 
         return true;
     }
@@ -49,7 +60,7 @@ public class MStepEntity {
     @Override
     public int hashCode() {
         int result = steps != null ? steps.hashCode() : 0;
-        result = 31 * result + (currentDate != null ? currentDate.hashCode() : 0);
+        result = 31 * result + (currentDateDetail != null ? currentDateDetail.hashCode() : 0);
         result = 31 * result + userId;
         return result;
     }

@@ -1,14 +1,20 @@
 package cn.panyunyi.HealthyLifeMain.entity;
 
+import javax.persistence.*;
+
 /**
- * Created by panyu on 2018/4/25.
+ * Created by panyu on 2018/5/6.
  */
+@Entity
+@Table(name = "m_user", schema = "healthylifemain", catalog = "")
 public class MUserEntity {
     private String userName;
     private String userPassword;
     private String picSrc;
     private int userId;
 
+    @Basic
+    @Column(name = "userName", nullable = true, length = 20)
     public String getUserName() {
         return userName;
     }
@@ -17,6 +23,8 @@ public class MUserEntity {
         this.userName = userName;
     }
 
+    @Basic
+    @Column(name = "userPassword", nullable = true, length = 20)
     public String getUserPassword() {
         return userPassword;
     }
@@ -25,6 +33,8 @@ public class MUserEntity {
         this.userPassword = userPassword;
     }
 
+    @Basic
+    @Column(name = "picSrc", nullable = true, length = 20)
     public String getPicSrc() {
         return picSrc;
     }
@@ -33,6 +43,8 @@ public class MUserEntity {
         this.picSrc = picSrc;
     }
 
+    @Id
+    @Column(name = "userId", nullable = false)
     public int getUserId() {
         return userId;
     }

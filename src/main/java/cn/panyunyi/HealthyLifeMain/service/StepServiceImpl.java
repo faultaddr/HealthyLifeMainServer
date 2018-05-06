@@ -41,7 +41,7 @@ public class StepServiceImpl implements StepService {
 
     @Override
     public String addStepData(MStepEntity stepEntity) {
-        DaoFactory daoFactory = DaoFactory.getInstance();
+        DaoFactory<MStepEntity> daoFactory = new DaoFactory<>();
         if (daoFactory.save(stepEntity)) {
             return "true";
         } else {
@@ -50,7 +50,7 @@ public class StepServiceImpl implements StepService {
     }
 
     private List<MStepEntity> optionHelper(String sql) {
-        DaoFactory daoFactory = DaoFactory.getInstance();
+        DaoFactory<MStepEntity> daoFactory = new DaoFactory<>();
         List<MStepEntity> mStepEntityList = null;
         try {
             mStepEntityList = daoFactory.cursor(sql, MStepEntity.class);

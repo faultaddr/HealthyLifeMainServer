@@ -22,25 +22,24 @@ public class BeatServiceImpl implements BeatService {
 
     @Override
     public List<MBeatEntity> getBeatsById(String id) {
-        String sql = "select * from m_beat where id=" + id;
+        String sql = "select * from m_beat where m_beat.id=" + id;
         return optionHelper(sql);
     }
 
     @Override
     public List<MBeatEntity> getBeatsByDate(String date) {
-        String sql = "select * from m_beat where currentDate='" + date + "%'";
+        String sql = "select * from m_beat where m_beat.currentDate='" + date + "%'";
         return optionHelper(sql);
     }
 
     @Override
     public boolean addBeats(MBeatEntity entity) {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        daoFactory.save(entity);
-        return false;
+        DaoFactory<MBeatEntity> daoFactory = new DaoFactory<>();
+        return daoFactory.save(entity);
     }
 
     private List<MBeatEntity> optionHelper(String sql) {
-        DaoFactory daoFactory = DaoFactory.getInstance();
+        DaoFactory<MBeatEntity> daoFactory = new DaoFactory<>();
         List<MBeatEntity> mBeatEntityList = null;
         try {
             mBeatEntityList = daoFactory.cursor(sql, MBeatEntity.class);
